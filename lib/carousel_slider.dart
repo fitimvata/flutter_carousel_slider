@@ -84,6 +84,9 @@ class CarouselSliderState extends State<CarouselSlider>
 
   void changeMode(CarouselPageChangedReason _mode) {
     mode = _mode;
+    if (options.onModeChanged != null) {
+      options.onModeChanged!(mode);
+    }
   }
 
   @override

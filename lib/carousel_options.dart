@@ -74,6 +74,9 @@ class CarouselOptions {
   /// Called whenever the page in the center of the viewport changes.
   final Function(int index, CarouselPageChangedReason reason)? onPageChanged;
 
+  /// Called whenever the page in the center of the viewport changes.
+  final Function(CarouselPageChangedReason reason)? onModeChanged;
+
   /// Called whenever the carousel is scrolled
   final ValueChanged<double?>? onScrolled;
 
@@ -135,31 +138,32 @@ class CarouselOptions {
 
   CarouselOptions({
     this.height,
-    this.aspectRatio: 16 / 9,
-    this.viewportFraction: 0.8,
-    this.initialPage: 0,
-    this.enableInfiniteScroll: true,
-    this.animateToClosest: true,
-    this.reverse: false,
-    this.autoPlay: false,
-    this.autoPlayInterval: const Duration(seconds: 4),
+    this.aspectRatio = 16 / 9,
+    this.viewportFraction = 0.8,
+    this.initialPage = 0,
+    this.enableInfiniteScroll = true,
+    this.animateToClosest = true,
+    this.reverse = false,
+    this.autoPlay = false,
+    this.autoPlayInterval = const Duration(seconds: 4),
     this.autoPlayAnimationDuration = const Duration(milliseconds: 800),
-    this.autoPlayCurve: Curves.fastOutSlowIn,
+    this.autoPlayCurve = Curves.fastOutSlowIn,
     this.enlargeCenterPage = false,
     this.onPageChanged,
+    this.onModeChanged,
     this.onScrolled,
     this.scrollPhysics,
     this.pageSnapping = true,
-    this.scrollDirection: Axis.horizontal,
-    this.pauseAutoPlayOnTouch: true,
-    this.pauseAutoPlayOnManualNavigate: true,
-    this.pauseAutoPlayInFiniteScroll: false,
+    this.scrollDirection = Axis.horizontal,
+    this.pauseAutoPlayOnTouch = true,
+    this.pauseAutoPlayOnManualNavigate = true,
+    this.pauseAutoPlayInFiniteScroll = false,
     this.pageViewKey,
-    this.enlargeStrategy: CenterPageEnlargeStrategy.scale,
-    this.enlargeFactor: 0.3,
-    this.disableCenter: false,
+    this.enlargeStrategy = CenterPageEnlargeStrategy.scale,
+    this.enlargeFactor = 0.3,
+    this.disableCenter = false,
     this.padEnds = true,
-    this.clipBehavior: Clip.hardEdge,
+    this.clipBehavior = Clip.hardEdge,
   });
 
   ///Generate new [CarouselOptions] based on old ones.
@@ -177,6 +181,7 @@ class CarouselOptions {
           Curve? autoPlayCurve,
           bool? enlargeCenterPage,
           Function(int index, CarouselPageChangedReason reason)? onPageChanged,
+          Function(CarouselPageChangedReason reason)? onModeChanged,
           ValueChanged<double?>? onScrolled,
           ScrollPhysics? scrollPhysics,
           bool? pageSnapping,
@@ -204,6 +209,7 @@ class CarouselOptions {
         autoPlayCurve: autoPlayCurve ?? this.autoPlayCurve,
         enlargeCenterPage: enlargeCenterPage ?? this.enlargeCenterPage,
         onPageChanged: onPageChanged ?? this.onPageChanged,
+        onModeChanged: onModeChanged ?? this.onModeChanged,
         onScrolled: onScrolled ?? this.onScrolled,
         scrollPhysics: scrollPhysics ?? this.scrollPhysics,
         pageSnapping: pageSnapping ?? this.pageSnapping,
